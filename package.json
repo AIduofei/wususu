@@ -8,14 +8,14 @@
     "dev:server": "tsx api/server.ts",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
     "build": "tsc -b && vite build",
-    "start": "npm run build && tsx api/server.ts",
+    "build:server": "tsc -p tsconfig.server.json",
+    "start": "npm run build && npm run build:server && node dist-server/server.js",
     "serve": "vite preview --host",
     "lint": "eslint .",
     "preview": "vite preview",
     "check": "tsc -b --noEmit"
   },
   "dependencies": {
-    "tsx": "^4.23.1",
     "typescript": "~5.8.3",
     "clsx": "^2.1.1",
     "cors": "^2.8.6",
