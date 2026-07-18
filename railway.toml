@@ -1,6 +1,6 @@
-[build]
-builder = "npm"
-buildCommand = "npm run build"
+[settings]
+npmInstallCommand = "npm install"
 
-[start]
+[deploy]
+buildCommand = "npm run build"
 startCommand = "npm run start"
