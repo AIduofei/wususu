@@ -19,7 +19,7 @@
     "typescript": "~5.8.3",
     "clsx": "^2.1.1",
     "cors": "^2.8.6",
-    "express": "^5.2.1",
+    "express": "^4.21.1",
     "lucide-react": "^0.511.0",
     "mime-types": "^3.0.2",
     "multer": "^2.2.0",

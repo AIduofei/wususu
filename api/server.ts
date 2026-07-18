@@ -71,7 +71,6 @@ app.use(express.json({ limit: '10mb' }));
 app.use('/uploads', express.static(UPLOAD_DIR));
 app.use('/images', express.static(path.join(rootDir, 'public', 'images')));
 app.use('/icons', express.static(path.join(rootDir, 'public', 'icons')));
-app.use('/', express.static(path.join(rootDir, 'dist')));
 
 // multer配置 - 图片上传
 const imageStorage = multer.diskStorage({
@@ -671,8 +670,13 @@ app.post('/api/wechat/msg', async (req, res) => {
   }
 });
 
-// SPA路由 - 所有其他路由返回index.html
-app.get('*', (req, res) => {
+// SPA路由 - 所有未匹配的路由返回index.html
+app.use((req, res) => {
+  if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/') || 
+      req.path.startsWith('/images/') || req.path.startsWith('/icons/')) {
+    res.status(404).send('Not Found');
+    return;
+  }
   res.sendFile(path.join(rootDir, 'dist', 'index.html'));
 });
 
