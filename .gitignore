@@ -15,6 +15,7 @@ dist-ssr
 # Uploaded files
 public/uploads/*
 public/images/*
+image/
 
 # Data files
 data/*.json
