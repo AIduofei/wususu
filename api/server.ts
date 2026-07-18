@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import multer, { File as MulterFile } from 'multer';
+import multer from 'multer';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
@@ -10,7 +10,9 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = parseInt(process.env.PORT || '3001', 10);
+
+type MulterFile = Express.Multer.File;
 
 // AI配置
 const DOUBAO_API_KEY = process.env.DOUBAO_API_KEY || '';

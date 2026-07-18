@@ -1,8 +1,13 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const PERSONA_FILE = path.join(process.cwd(), 'data', 'persona.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.join(__dirname, '..');
+
+const PERSONA_FILE = path.join(rootDir, 'data', 'persona.json');
 const DOUBAO_API_KEY = process.env.DOUBAO_API_KEY || '';
 const DOUBAO_API_URL = 'https://chat-api.bytedance.net/api/chat';
 
@@ -29,7 +34,7 @@ function getPersona() {
   return DEFAULT_PERSONA;
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: Request, res: Response) {
   const { method } = req;
 
   res.setHeader('Access-Control-Allow-Origin', '*');
